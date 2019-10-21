@@ -36,6 +36,7 @@ The purpose of this project is to create a simple app to manage a list of to-do 
 #### Implementation Expectations
 1. A web page that shows the to-do list items (as a table likely).  
   - I would recommend using a react app, but you can also use vanilla html, JS etc. 
+  - This repository inlcudes a basic react app template that you can use in your project. 
 
 2. An API Service that the web page talks with. This can be a python flask app (but feel free to use other languages or frameworks you're more familiar with). It can have the following endpoints:
     - POST /create: to create a new to-do item
