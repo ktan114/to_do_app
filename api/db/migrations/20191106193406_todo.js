@@ -3,6 +3,7 @@ exports.up = function(knex) {
     table.increments('id');
     table.string('name');
     table.timestamp('due_date');
+    table.string('type');
     table.boolean('is_finished').defaultTo(false);
     table.string('notes');
   });
