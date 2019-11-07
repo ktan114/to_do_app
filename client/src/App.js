@@ -14,13 +14,17 @@ export default class App extends PureComponent {
   }
 
   componentDidMount() {
+    this.getTodos();
+  }
+
+  getTodos = () => {
     axios
       .get('http://localhost:5000/api/todos')
       .then(res => {
         this.setState({ todos: res.data });
       })
       .catch(err => console.log(err));
-  }
+  };
 
   render() {
     const { todos } = this.state;
@@ -29,7 +33,7 @@ export default class App extends PureComponent {
       <div>
         <Header />
         <Todos todos={todos} />
-        <AddTodo />
+        <AddTodo getTodos={this.getTodos}/>
       </div>
     );
   }

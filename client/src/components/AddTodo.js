@@ -27,12 +27,12 @@ class AddTodo extends Component {
       notes,
     };
 
-    console.log('todo', todo)
-
     axios
       .post('http://localhost:5000/api/todos', todo)
       .then(res => console.log(res))
       .catch(err => console.log(err));
+
+    this.props.getTodos();
   };
 
   render() {
@@ -42,32 +42,32 @@ class AddTodo extends Component {
         <input
           name="name"
           value={name}
-          placeholder="Name of todo"
+          placeholder="Name"
           onChange={this.handleChange}
         />
         <input
           name="due_date"
           value={due_date}
-          placeholder="Name of todo"
+          placeholder="Due Date"
           onChange={this.handleChange}
         />
         <input
           name="type"
           value={type}
-          placeholder="Name of todo"
+          placeholder="Type"
           onChange={this.handleChange}
         />
         {/* Replace this with a checkbox */}
         <input
           name="is_finished"
           value={is_finished}
-          placeholder="Name of todo"
+          placeholder="Finished"
           onChange={this.handleChange}
         />
         <input
           name="notes"
           value={notes}
-          placeholder="Name of todo"
+          placeholder="Notes"
           onChange={this.handleChange}
         />
         <button onClick={this.addTodo}>Add Todo</button>
