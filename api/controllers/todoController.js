@@ -6,7 +6,7 @@ const service = require('../services/todoService');
     @desc   Retrieves all of the todos
     @access Public
 */
-router.route('/todos').get((req, res) => {
+router.route('/').get((req, res) => {
   return service
     .findAllTodos()
     .then(todos => res.status(200).json(todos))
@@ -18,7 +18,7 @@ router.route('/todos').get((req, res) => {
     @desc   Create a new todo
     @access Public
 */
-router.route('/todos').post((req, res) => {
+router.route('/').post((req, res) => {
   const { todo } = req.body;
 
   return service
@@ -32,7 +32,7 @@ router.route('/todos').post((req, res) => {
     @desc   Updates a todo by id
     @access Public
 */
-router.route('/todos/:id').put((req, res) => {
+router.route('/:id').put((req, res) => {
   const { todo } = req.body;
   const { id } = req.params;
 
@@ -47,7 +47,7 @@ router.route('/todos/:id').put((req, res) => {
     @desc   Delete a todo by id
     @access Public
 */
-router.route('/todos/:id').delete((req, res) => {
+router.route('/:id').delete((req, res) => {
   const { id } = req.params;
 
   return service
