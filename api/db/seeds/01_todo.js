@@ -24,6 +24,13 @@ exports.seed = function(knex) {
           is_finished: false,
           notes: 'Go to the store and pick up all of your groceries',
         },
+        {
+          name: 'Grocery shopping',
+          due_date: new Date(2019, 11, 12, 8, 12),
+          type: 'Chore',
+          is_finished: true,
+          notes: 'Go to the store and pick up all of your groceries',
+        },
       ]);
     });
 };

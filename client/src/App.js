@@ -5,11 +5,14 @@ import Header from './Header';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 
+import { filteredTodos } from './utils/helper';
+
 export default class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       todos: [],
+      filtered: false,
     };
   }
 
@@ -26,14 +29,19 @@ export default class App extends PureComponent {
       .catch(err => console.log(err));
   };
 
-  render() {
-    const { todos } = this.state;
+  onClick = () => {
+    this.setState({ filtered: !this.state.filtered });
+  };
 
+  render() {
+    let { todos, filtered } = this.state;
+    if (filtered) todos = filteredTodos(todos);
     return (
       <div>
         <Header />
         <Todos todos={todos} />
-        <AddTodo getTodos={this.getTodos}/>
+        <AddTodo getTodos={this.getTodos} />
+        <button onClick={this.onClick}>Filter Completed Todos</button>
       </div>
     );
   }
