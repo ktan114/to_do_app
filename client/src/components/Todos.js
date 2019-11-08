@@ -5,13 +5,38 @@ import moment from 'moment';
 import axios from 'axios';
 
 const Todos = props => {
-  const handleDelete = id => {
+  const data = props.todos;
+
+  const handleEdit = id => {
+    const todo = data.filter(todo => todo.id === id);
     axios
-      .delete(`http://localhost:5000/api/todos/${id}`)
+      .put(`http://localhost:5000/api/todos/${id}`, todo[0])
       .then(() => props.getTodos())
       .catch(err => console.log(err));
   };
-  const data = props.todos;
+  const handleDelete = id => {
+    axios
+      .delete(`http://localhost:5000/api/todos/${id}`)
+      .then(() => {})
+      .catch(err => console.log(err));
+  };
+
+  const renderEditable = cellInfo => {
+    return (
+      <div
+        contentEditable
+        suppressContentEditableWarning
+        onBlur={e => {
+          let index = cellInfo['index'];
+          let field = cellInfo['column']['id'];
+          let currentValue = e.target.innerHTML;
+          data[index][field] = currentValue;
+        }}
+      >
+        {cellInfo.value}
+      </div>
+    );
+  };
   const columns = [
     {
       Header: 'Changes',
@@ -19,7 +44,7 @@ const Todos = props => {
       Cell: props => {
         return (
           <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-            <span>Edit</span>
+            <button onClick={() => handleEdit(props.value)}>Save</button>
             <button
               onClick={() => handleDelete(props.value)}
               style={{ color: 'red' }}
@@ -33,6 +58,7 @@ const Todos = props => {
     {
       Header: 'Name',
       accessor: 'name',
+      Cell: renderEditable,
     },
     {
       id: 'due_date',
@@ -44,10 +70,12 @@ const Todos = props => {
     {
       Header: 'Type',
       accessor: 'type',
+      Cell: renderEditable,
     },
     {
       Header: 'Notes',
       accessor: 'notes',
+      Cell: renderEditable,
     },
     {
       id: 'is_finished',
