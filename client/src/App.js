@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import axios from 'axios';
 
+import './App.css';
 import Header from './Header';
 import ChangeView from './components/ChangeView';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
-
-import { filteredTodos, sortTodos } from './utils/helper';
+import { filteredTodos } from './utils/helper';
 
 export default class App extends PureComponent {
   constructor(props) {
@@ -31,25 +31,16 @@ export default class App extends PureComponent {
     this.setState({ filtered: !this.state.filtered });
   };
 
-  sort = field => {
-    this.setState({
-      sort: !this.state.sort,
-      todos: sortTodos(this.state.todos, field),
-    });
-  };
-
   render() {
     let { todos, filtered } = this.state;
     if (filtered) todos = filteredTodos(todos);
     return (
       <div>
         <Header />
-        <ChangeView
-          onClick={this.onClick}
-          sort={this.sort}
-          getTodos={this.getTodos}
-        />
-        <AddTodo getTodos={this.getTodos} />
+        <div className="App__Section">
+          <AddTodo getTodos={this.getTodos} />
+          <ChangeView onClick={this.onClick} />
+        </div>
         <Todos todos={todos} getTodos={this.getTodos} />
       </div>
     );

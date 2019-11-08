@@ -41,31 +41,39 @@ class AddTodo extends Component {
   render() {
     const { name, due_date, type, notes } = this.state;
     return (
-      <div>
-        <label>Name</label>
-        <input
-          name="name"
-          value={name}
-          placeholder="Name"
-          onChange={this.handleChange}
-        />
-        <label>Type</label>
-        <input
-          name="type"
-          value={type}
-          placeholder="Type"
-          onChange={this.handleChange}
-        />
-        <label>Notes</label>
-        <input
-          name="notes"
-          value={notes}
-          placeholder="Notes"
-          onChange={this.handleChange}
-        />
-        <label>Due Date</label>
-        <DatePicker selected={due_date} onChange={this.handleDate} />
-        <button onClick={this.addTodo}>Add Todo</button>
+      <div className="AddTodo">
+        <div className="AddTodo__Input">
+          <label>Name</label>
+          <input
+            name="name"
+            value={name}
+            placeholder="Name"
+            onChange={this.handleChange}
+          />
+        </div>
+        <div className="AddTodo__Input">
+          <label>Type</label>
+          <input
+            name="type"
+            value={type}
+            placeholder="Type"
+            onChange={this.handleChange}
+          />
+        </div>
+        <div className="AddTodo__Input">
+          <label>Notes</label>
+          <textarea rows={30} cols={30}
+            name="notes"
+            value={notes}
+            placeholder="Notes"
+            onChange={this.handleChange}
+          />
+        </div>
+        <div className="AddTodo__Input">
+          <label>Due Date</label>
+          <DatePicker selected={due_date} onChange={this.handleDate} />
+        </div>
+        <button className="Button" onClick={this.addTodo}>Add Todo</button>
       </div>
     );
   }

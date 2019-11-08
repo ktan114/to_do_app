@@ -26,3 +26,28 @@
     transform: rotate(360deg);
   }
 }
+
+.App__Section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.AddTodo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  width: 70%;
+  margin-left: 14%;
+}
+.AddTodo__Input {
+  margin-top: 30px;
+  display: flex;
+  flex-flow: column;
+  height: 80px;
+}
+.Button {
+  height: 30px;
+  background: lightblue;
+}
