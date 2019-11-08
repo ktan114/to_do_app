@@ -19,11 +19,11 @@ router.route('/').get((req, res) => {
     @access Public
 */
 router.route('/').post((req, res) => {
-  const todo = req.body; 
-  
+  const todo = req.body;
+
   return service
     .saveTodo(todo)
-    .then(() => res.status(201))
+    .then(() => res.status(201).json({ message: 'Success' }))
     .catch(err => res.status(500).json(err));
 });
 
@@ -33,7 +33,7 @@ router.route('/').post((req, res) => {
     @access Public
 */
 router.route('/:id').put((req, res) => {
-  const  todo  = req.body;
+  const todo = req.body;
   const { id } = req.params;
 
   return service
