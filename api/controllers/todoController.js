@@ -38,7 +38,7 @@ router.route('/:id').put((req, res) => {
 
   return service
     .updateTodo(id, todo)
-    .then(() => res.status(204))
+    .then(() => res.status(204).json({ message: 'Success' }))
     .catch(err => res.status(500).json(err));
 });
 
@@ -52,7 +52,7 @@ router.route('/:id').delete((req, res) => {
 
   return service
     .deleteTodo(id)
-    .then(() => res.status(204))
+    .then(() => res.status(204).json({ message: 'Success' }))
     .catch(err => res.status(500).json(err));
 });
 

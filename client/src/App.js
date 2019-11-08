@@ -50,7 +50,7 @@ export default class App extends PureComponent {
           getTodos={this.getTodos}
         />
         <AddTodo getTodos={this.getTodos} />
-        <Todos todos={todos} />
+        <Todos todos={todos} getTodos={this.getTodos} />
       </div>
     );
   }

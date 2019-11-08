@@ -2,10 +2,34 @@ import React from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import moment from 'moment';
+import axios from 'axios';
 
 const Todos = props => {
+  const handleDelete = id => {
+    axios
+      .delete(`http://localhost:5000/api/todos/${id}`)
+      .then(() => props.getTodos())
+      .catch(err => console.log(err));
+  };
   const data = props.todos;
   const columns = [
+    {
+      Header: 'Changes',
+      accessor: 'id',
+      Cell: props => {
+        return (
+          <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+            <span>Edit</span>
+            <button
+              onClick={() => handleDelete(props.value)}
+              style={{ color: 'red' }}
+            >
+              Delete
+            </button>
+          </div>
+        );
+      },
+    },
     {
       Header: 'Name',
       accessor: 'name',
@@ -31,6 +55,7 @@ const Todos = props => {
       accessor: data => <input type="checkbox" checked={data.is_finished} />,
     },
   ];
+
   return (
     <div>
       <ReactTable
