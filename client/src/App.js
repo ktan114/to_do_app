@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import axios from 'axios';
 
 import Header from './Header';
+import ChangeView from './components/ChangeView';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 
@@ -43,13 +44,13 @@ export default class App extends PureComponent {
     return (
       <div>
         <Header />
+        <ChangeView
+          onClick={this.onClick}
+          sort={this.sort}
+          getTodos={this.getTodos}
+        />
         <Todos todos={todos} />
         <AddTodo getTodos={this.getTodos} />
-        <button onClick={this.onClick}>Filter Completed Todos</button>
-        <button onClick={() => this.sort('due_date')}>Sort By Due Date</button>
-        <button onClick={() => this.sort('name')}>Sort By Name</button>
-        <button onClick={() => this.sort('type')}>Sort By Type</button>
-        <button onClick={this.getTodos}>Original</button>
       </div>
     );
   }
