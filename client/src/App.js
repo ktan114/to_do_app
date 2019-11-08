@@ -24,7 +24,7 @@ export default class App extends PureComponent {
 
   getTodos = async () => {
     const todos = await axios.get('http://localhost:5000/api/todos');
-    this.setState(prevState => ({ todos: [prevState, ...todos.data] }));
+    this.setState(() => ({ todos: todos.data }));
   };
 
   onClick = () => {
@@ -49,8 +49,8 @@ export default class App extends PureComponent {
           sort={this.sort}
           getTodos={this.getTodos}
         />
-        <Todos todos={todos} />
         <AddTodo getTodos={this.getTodos} />
+        <Todos todos={todos} />
       </div>
     );
   }

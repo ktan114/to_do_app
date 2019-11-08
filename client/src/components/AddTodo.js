@@ -5,11 +5,10 @@ class AddTodo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'name',
+      name: '',
       due_date: new Date(),
-      type: 'type',
-      is_finished: false,
-      notes: 'notes',
+      type: '',
+      notes: '',
     };
   }
 
@@ -18,12 +17,11 @@ class AddTodo extends Component {
   };
 
   addTodo = async () => {
-    const { name, due_date, type, is_finished, notes } = this.state;
+    const { name, due_date, type, notes } = this.state;
     const todo = {
       name,
       due_date,
       type,
-      is_finished,
       notes,
     };
 
@@ -35,7 +33,7 @@ class AddTodo extends Component {
   };
 
   render() {
-    const { name, due_date, type, is_finished, notes } = this.state;
+    const { name, due_date, type, notes } = this.state;
     return (
       <div>
         <input
@@ -45,28 +43,21 @@ class AddTodo extends Component {
           onChange={this.handleChange}
         />
         <input
-          name="due_date"
-          value={due_date}
-          placeholder="Due Date"
-          onChange={this.handleChange}
-        />
-        <input
           name="type"
           value={type}
           placeholder="Type"
-          onChange={this.handleChange}
-        />
-        {/* Replace this with a checkbox */}
-        <input
-          name="is_finished"
-          value={is_finished}
-          placeholder="Finished"
           onChange={this.handleChange}
         />
         <input
           name="notes"
           value={notes}
           placeholder="Notes"
+          onChange={this.handleChange}
+        />
+        <input
+          name="due_date"
+          value={due_date}
+          placeholder="Due Date"
           onChange={this.handleChange}
         />
         <button onClick={this.addTodo}>Add Todo</button>
