@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import moment from 'moment';
 
 const Todos = props => {
   const data = props.todos;
@@ -10,8 +11,11 @@ const Todos = props => {
       accessor: 'name',
     },
     {
+      id: 'due_date',
       Header: 'Due Date',
-      accessor: 'due_date',
+      accessor: data => (
+        <span>{moment(data.due_date).format('MM/DD/YYYY')}</span>
+      ),
     },
     {
       Header: 'Type',
