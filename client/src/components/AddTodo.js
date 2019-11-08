@@ -17,7 +17,7 @@ class AddTodo extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  addTodo = () => {
+  addTodo = async () => {
     const { name, due_date, type, is_finished, notes } = this.state;
     const todo = {
       name,
@@ -27,12 +27,11 @@ class AddTodo extends Component {
       notes,
     };
 
-    axios
-      .post('http://localhost:5000/api/todos', todo)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-
-    this.props.getTodos();
+    const response = await axios.post('http://localhost:5000/api/todos', todo);
+    if (response) {
+      this.props.getTodos();
+      this.setState({ name: '', type: '', notes: '' });
+    }
   };
 
   render() {
