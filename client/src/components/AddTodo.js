@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class AddTodo extends Component {
   constructor(props) {
@@ -16,6 +18,10 @@ class AddTodo extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleDate = date => {
+    this.setState({ due_date: date });
+  };
+
   addTodo = async () => {
     const { name, due_date, type, notes } = this.state;
     const todo = {
@@ -28,7 +34,7 @@ class AddTodo extends Component {
     const response = await axios.post('http://localhost:5000/api/todos', todo);
     if (response) {
       this.props.getTodos();
-      this.setState({ name: '', type: '', notes: '' });
+      this.setState({ name: '', type: '', notes: '', due_date: new Date() });
     }
   };
 
@@ -36,30 +42,29 @@ class AddTodo extends Component {
     const { name, due_date, type, notes } = this.state;
     return (
       <div>
+        <label>Name</label>
         <input
           name="name"
           value={name}
           placeholder="Name"
           onChange={this.handleChange}
         />
+        <label>Type</label>
         <input
           name="type"
           value={type}
           placeholder="Type"
           onChange={this.handleChange}
         />
+        <label>Notes</label>
         <input
           name="notes"
           value={notes}
           placeholder="Notes"
           onChange={this.handleChange}
         />
-        <input
-          name="due_date"
-          value={due_date}
-          placeholder="Due Date"
-          onChange={this.handleChange}
-        />
+        <label>Due Date</label>
+        <DatePicker selected={due_date} onChange={this.handleDate} />
         <button onClick={this.addTodo}>Add Todo</button>
       </div>
     );
