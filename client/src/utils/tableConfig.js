@@ -33,6 +33,7 @@ const tableConfig = (data, getTodos) => {
     {
       Header: 'Name',
       accessor: 'name',
+      style: { whiteSpace: 'unset' },
       Cell: cellInfo => renderEditable(cellInfo, data),
     },
     {
@@ -46,11 +47,13 @@ const tableConfig = (data, getTodos) => {
     {
       Header: 'Type',
       accessor: 'type',
+      style: { whiteSpace: 'unset' },
       Cell: cellInfo => renderEditable(cellInfo, data),
     },
     {
       Header: 'Notes',
       accessor: 'notes',
+      style: { whiteSpace: 'unset' },
       Cell: cellInfo => renderEditable(cellInfo, data),
     },
     {
