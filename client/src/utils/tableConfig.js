@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import { handleEdit, handleDelete, renderEditable, editDate } from './helper';
 
-const tableConfig = (props, getTodos) => {
+const tableConfig = (data, getTodos) => {
   const columns = [
     {
       Header: 'Changes',
@@ -13,7 +13,7 @@ const tableConfig = (props, getTodos) => {
           <div style={{ display: 'flex', justifyContent: 'space-around' }}>
             <button
               onClick={() => {
-                handleEdit(cellInfo.value, props.data, getTodos);
+                handleEdit(cellInfo.value, data, getTodos);
               }}
             >
               Save
@@ -33,7 +33,7 @@ const tableConfig = (props, getTodos) => {
     {
       Header: 'Name',
       accessor: 'name',
-      Cell: cellInfo => renderEditable(cellInfo, props.data),
+      Cell: cellInfo => renderEditable(cellInfo, data),
     },
     {
       id: 'due_date',
@@ -41,17 +41,17 @@ const tableConfig = (props, getTodos) => {
       accessor: data => (
         <span>{moment(data.due_date).format('MM/DD/YYYY')}</span>
       ),
-      Cell: cellInfo => editDate(cellInfo, props.data),
+      Cell: cellInfo => editDate(cellInfo, data),
     },
     {
       Header: 'Type',
       accessor: 'type',
-      Cell: cellInfo => renderEditable(cellInfo, props.data),
+      Cell: cellInfo => renderEditable(cellInfo, data),
     },
     {
       Header: 'Notes',
       accessor: 'notes',
-      Cell: cellInfo => renderEditable(cellInfo, props.data),
+      Cell: cellInfo => renderEditable(cellInfo, data),
     },
     {
       id: 'is_finished',
