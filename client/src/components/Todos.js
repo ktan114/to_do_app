@@ -22,16 +22,14 @@ const Todos = props => {
           <div style={{ display: 'flex', justifyContent: 'space-around' }}>
             <button
               onClick={() => {
-                handleEdit(cellInfo.value, data);
-                props.getTodos();
+                handleEdit(cellInfo.value, data, props.getTodos);
               }}
             >
               Save
             </button>
             <button
               onClick={() => {
-                handleDelete(cellInfo.value);
-                props.getTodos();
+                handleDelete(cellInfo.value, props.getTodos);
               }}
               style={{ color: 'red' }}
             >

@@ -5,18 +5,18 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 export const filteredTodos = todos => todos.filter(todo => !todo.is_finished);
 
-export const handleEdit = (id, todos) => {
+export const handleEdit = (id, todos, getTodos) => {
   const todo = todos.filter(todo => todo.id === id);
   axios
     .put(`http://localhost:5000/api/todos/${id}`, todo[0])
-    .then(() => {})
+    .then(() => getTodos())
     .catch(err => console.log(err));
 };
 
-export const handleDelete = id => {
+export const handleDelete = (id, getTodos) => {
   axios
     .delete(`http://localhost:5000/api/todos/${id}`)
-    .then(() => {})
+    .then(() => getTodos())
     .catch(err => console.log(err));
 };
 
