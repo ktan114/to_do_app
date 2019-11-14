@@ -50,7 +50,7 @@ export const editDate = (cellInfo, data) => {
     <div>
       <DatePicker
         selected={selected}
-        onChange={(date, e) => {
+        onChange={date => {
           selected = date;
           data[index][field] = date;
         }}
