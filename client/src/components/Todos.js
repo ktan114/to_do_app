@@ -71,7 +71,7 @@ const Todos = props => {
         <input
           type="checkbox"
           checked={data.is_finished}
-          onClick={e => {
+          onChange={e => {
             data.is_finished = !data.is_finished;
           }}
         />
